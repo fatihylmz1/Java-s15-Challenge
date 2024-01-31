@@ -1,4 +1,4 @@
-package com.workintech.library;
+package com.workintech.library.Person;
 
 public abstract class Person {
     private String name;

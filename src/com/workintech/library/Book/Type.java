@@ -1,4 +1,4 @@
-package com.workintech.library;
+package com.workintech.library.Book;
 
 public enum Type {
     JOURNALS,
