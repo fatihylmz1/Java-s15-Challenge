@@ -16,6 +16,10 @@ public class Reader extends Person {
         this.books = new HashSet<>();
     }
 
+    public Set<Books> getBooks() {
+        return books;
+    }
+
     public void purchase_book(Books book) {
         books.add(book);
         book.change_owner(this);
@@ -40,4 +44,6 @@ public class Reader extends Person {
     public void whoyouare() {
         System.out.println("The reader name is: " + super.getName());
     }
+
 }
+

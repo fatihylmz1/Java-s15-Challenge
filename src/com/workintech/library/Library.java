@@ -11,7 +11,7 @@ import java.util.List;
 import java.util.Set;
 
 public class Library {
-    private static List<Books> books;
+    private List<Books> books;
 
     private Set<Reader> readers;
 
@@ -20,7 +20,7 @@ public class Library {
         this.readers = new HashSet<>();
     }
 
-    public static Books get_book(int bookId){
+    public Books get_book(int bookId){
 
         if (books != null) {
             for (Books book : books) {
@@ -43,11 +43,18 @@ public class Library {
     }
 
     public void lend_book(Books book,Reader reader){
-        if(books.contains(book) && readers.contains(reader)){
+        if(books.contains(book)){
             book.change_owner(reader);
             reader.borrow_book(book);
         }else{
             System.out.println("Kitap zaten alınmış.");
+        }
+    }
+    public void remove_book(Books book){
+        if(books.contains(book)){
+            books.remove(book);
+        }else{
+            System.out.println("Kitap zaten silinmiş.");
         }
     }
 
@@ -70,5 +77,47 @@ public class Library {
         }
 
         return books;
+    }
+    public List<Books> getBooksByType(Type type) {
+        List<Books> result = new ArrayList<>();
+        for (Books book : books) {
+            if (book.getType() == type) {
+                result.add(book);
+                System.out.println(result);
+            }
+        }
+        return result;
+    }
+
+    public List<Books> getBooksByAuthor(String author) {
+        List<Books> result = new ArrayList<>();
+        for (Books book : books) {
+            if (book.get_author().equals(author)) {
+                result.add(book);
+                System.out.println(result);
+            }
+        }
+        return result;
+    }
+    public void displayBooksByType(Type type) {
+        List<Books> booksOfType = getBooksByType(type);
+        for (Books book : booksOfType) {
+            System.out.println(book.display());
+        }
+    }
+
+    public void displayBooksByAuthor(String author) {
+        List<Books> booksByAuthor = getBooksByAuthor(author);
+        for (Books book : booksByAuthor) {
+            System.out.println(book.display());
+        }
+    }
+
+    @Override
+    public String toString() {
+        return "Library{" +
+                "books=" + books +
+                ", readers=" + readers +
+                '}';
     }
 }
